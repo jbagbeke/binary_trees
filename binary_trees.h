@@ -1,4 +1,4 @@
-#ifndef BINARY_TREES_h
+#ifndef BINARY_TREES_H
 #define BINARY_TREES_H
 
 #include <stdio.h>
