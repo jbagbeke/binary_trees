@@ -1,9 +1,9 @@
 #include "binary_trees.h"
 
 /**
- * binary_tree_height - Goes via a binary tree using post-order traversal
- * @tree: Pointer to the root node of the tree to traverse
- * Return: Void
+ * binary_tree_depth - Clacs the depth of a node in a binary tree
+ * @tree: Node in the tree to calc depth of
+ * Return: depth of a node
  */
 size_t binary_tree_depth(const binary_tree_t *tree)
 {
@@ -11,8 +11,8 @@ size_t binary_tree_depth(const binary_tree_t *tree)
 
 	if (tree == NULL || tree->parent == NULL)
 		return (0);
-	else
-		node_depth = binary_tree_depth(tree->parent);
+
+	node_depth = binary_tree_depth(tree->parent);
 
 	return (node_depth + 1);
 }
