@@ -21,10 +21,16 @@ binary_tree_t *binary_tree_uncle(binary_tree_t *node)
 			node_gp = node_p->parent;
 
 			if (node_gp->right->right == node || node_gp->right->left == node)
-				node_uncle = node_gp->left;
+			{
+				if (node_gp->left != NULL)
+					node_uncle = node_gp->left;
+			}
 
 			if (node_gp->left->left == node || node_gp->left->right == node)
-				node_uncle = node_gp->right;
+			{
+				if (node_gp->right != NULL)
+					node_uncle = node_gp->right;
+			}
 		}
 	}
 
