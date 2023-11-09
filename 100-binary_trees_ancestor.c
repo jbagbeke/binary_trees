@@ -69,5 +69,5 @@ binary_tree_t *binary_trees_ancestor(binary_tree_t *fst, binary_tree_t *scd)
 			return (second_point->parent);
 	}
 
-	return (fst->parent);
+	return (fst);
 }
