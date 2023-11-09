@@ -29,45 +29,44 @@ int node_depth(binary_tree_t *node)
  */
 binary_tree_t *binary_trees_ancestor(binary_tree_t *fst, binary_tree_t *scd)
 {
-	binary_tree_t *first_point = NULL, *second_point = NULL;
+	binary_tree_t *node_point = NULL, *node1 = fst, *node2 = scd, *alt = NULL;
 	int first_depth, second_depth;
 
 	if (fst == NULL || scd == NULL)
 		return (NULL);
+	if (fst == scd)
+		return (fst);
 
 	first_depth = node_depth(fst);
 	second_depth = node_depth(scd);
 
 	if (first_depth > second_depth)
 	{
-		first_point = fst;
-
-		while (first_point->parent != NULL && first_point->parent != scd->parent)
-		{
-			if (first_point->parent == scd)
-				return (scd);
-
-			first_point = first_point->parent;
-		}
-
-		if (first_point != NULL)
-			return (first_point->parent);
+		node_point = fst;
+		alt = scd;
 	}
 	else if (second_depth > first_depth)
 	{
-		second_point = scd;
-
-		while (second_point->parent != NULL && second_point->parent != fst->parent)
-		{
-			if (second_point->parent == fst)
-				return (fst);
-
-			second_point = second_point->parent;
-		}
-
-		if (second_point != NULL)
-			return (second_point->parent);
+		node_point = scd;
+		alt = fst;
 	}
 
-	return (fst);
+	if (node_point != NULL)
+	{
+		while (node_point->parent != NULL && node_point->parent != alt->parent)
+		{
+			if (node_point->parent == alt)
+				return (alt);
+			node_point = node_point->parent;
+		}
+		if (node_point != NULL)
+			return (node_point->parent);
+	}
+
+	while (node1->parent != NULL && node1->parent != node2->parent)
+	{
+		node1 = node1->parent;
+		node2 = node2->parent;
+	}
+	return (node1->parent);
 }
